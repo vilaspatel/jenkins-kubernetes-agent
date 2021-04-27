@@ -17,7 +17,7 @@ pipeline {
       steps { 
         container('sonar-scanner') {  
         sh "ls -lh"    
-        sh "sonar-scanner -X"   
+        sh "sonar-scanner -Dsonar.login=6ff25c2c9d25fb30c5fe0d41bae2528bfda5d115 -Dsonar.host.url=http://52.170.253.153:9000/ -Dsonar.projectKey=vilasproject -X"   
       }
     }
     }  
