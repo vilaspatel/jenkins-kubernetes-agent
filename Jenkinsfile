@@ -13,7 +13,7 @@ pipeline {
         sh "mvn clean package"   
       }
     }
-    stage('Build') {
+    stage('sonar-scanner') {
       steps { 
         container('sonar-scanner') {  
         sh "ls -lh"    
