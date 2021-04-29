@@ -25,6 +25,11 @@ pipeline {
       }
     }
     }  
+    stage('Nexus') {
+      steps {  // no container directive is needed as the maven container is the default
+        sh "mvn deploy:deploy-file -DgroupId=com.company.app -DartifactId=my-app -Dversion=1.0-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=maven-hosted -Durl=http://40.88.192.216/repository/maven-hosted/ -Dfile=target/my-app-1.0-SNAPSHOT.jar"   
+      }
+    }
 //    stage('Build Docker Image') {
 //      steps {
 //        container('docker') {  
