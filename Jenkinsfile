@@ -16,7 +16,8 @@ pipeline {
     stage('sonar-scanner') {
       steps { 
         container('sonar-scanner') {  
-        sh "ls -lh"    
+        sh "ls -lh"
+        sh "env"  
         sh "sonar-scanner -Dsonar.login=2bcfdf0e66bfd58e1ab1183680d11ac1267416d5 -Dsonar.host.url=http://52.190.40.168 -Dsonar.projectKey=sonarqube-test -Dsonar.sources=. -Dsonar.java.binaries=target/my-app-1.0-SNAPSHOT.jar -X"   
       }
     }
