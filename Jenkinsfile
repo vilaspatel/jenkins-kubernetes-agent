@@ -11,18 +11,17 @@ pipeline {
     sonar_login     = credentials('sonar_login')
   }
   stages {
-//    stage('Build') {
-//      steps {  // no container directive is needed as the maven container is the default
-//        sh "mvn clean package"   
-//      }
-//    }
+    stage('Build') {
+      steps {  // no container directive is needed as the maven container is the default
+        sh "mvn clean package"   
+      }
+    }
     stage('sonar-scanner') {
       steps { 
         container('sonar-scanner') {  
         //sh "ls -lh"
-        sh "env"  
-        sh "$sonar_login"  
-        //sh "sonar-scanner -Dsonar.login=2bcfdf0e66bfd58e1ab1183680d11ac1267416d5 -Dsonar.host.url=http://52.190.40.168 -Dsonar.projectKey=sonarqube-test -Dsonar.sources=. -Dsonar.java.binaries=target/my-app-1.0-SNAPSHOT.jar -X"   
+        sh "env"
+        sh "sonar-scanner -Dsonar.login=$sonar_login -Dsonar.host.url=http://52.190.40.168 -Dsonar.projectKey=sonarqube-test -Dsonar.sources=. -Dsonar.java.binaries=target/my-app-1.0-SNAPSHOT.jar -X"   
       }
     }
     }  
